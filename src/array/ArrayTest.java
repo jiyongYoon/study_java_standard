@@ -2,7 +2,7 @@ package array;
 
 import java.util.Arrays;
 
-public class MyArray {
+public class ArrayTest {
 
     public static void main(String[] args) {
         int[] score = new int[5]; // score 변수에 배열의 시작점 참조값이 저장됨. 배열은 각 저장공간이 길이만큼 연속적으로 배치되어 있다.
