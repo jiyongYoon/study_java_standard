@@ -188,6 +188,12 @@ class Student {
     Integer totalScore;
     String name;
 
+    boolean isMale;
+
+    public boolean isMale() {
+        return isMale;
+    }
+
     public String getBan() {
         return ban;
     }
@@ -200,12 +206,20 @@ class Student {
         return name;
     }
 
+    public Student(String ban, Integer totalScore, String name, boolean isMale) {
+        this.ban = ban;
+        this.totalScore = totalScore;
+        this.name = name;
+        this.isMale = isMale;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
             "ban='" + ban + '\'' +
             ", totalScore=" + totalScore +
             ", name='" + name + '\'' +
+            ", isMale=" + isMale +
             '}';
     }
 
