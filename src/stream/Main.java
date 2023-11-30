@@ -101,6 +101,49 @@ public class Main {
         3번학생
          */
 
+        // FlatMap
+        Stream<String[]> strArrStream = Stream.of(
+            new String[]{"abc", "def", "jkl"},
+            new String[]{"ABC", "DEF", "JKL"}
+        );
+
+        Stream<String> stringStream = strArrStream.flatMap(Arrays::stream);
+        stringStream.map(String::toLowerCase)
+            .distinct()
+            .sorted()
+            .forEach(System.out::println);
+        /*
+        abc
+        def
+        jkl
+         */
+        System.out.println();
+
+        String[] lineArr = {
+            "Believe or not It is true",
+            "Do or do not there is no try"
+        };
+
+        Stream<String> lineStream = Arrays.stream(lineArr);
+        lineStream.flatMap(line -> Stream.of(line.split(" +")))
+            .map(String::toLowerCase)
+            .distinct()
+            .sorted()
+            .forEach(System.out::println);
+        /*
+        believe
+        do
+        is
+        it
+        no
+        not
+        or
+        there
+        true
+        try
+         */
+        System.out.println();
+
 
         /* 스트림 최종연산 */
         /* reduce, collect가 핵심!!
@@ -119,7 +162,23 @@ public class Main {
         R collect(Supplier<R> supplier, BiConsumer<R, T> accumulator, BiConsumer<R, R> combiner)
          */
 
+        List<Integer> integerList = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
 
+        // reduce(초기값, ( a, b ) -> Binary 람다 연산 식)
+        int count = integerList.stream().reduce(0, (a, b) -> a + 1);
+        int sum = integerList.stream().reduce(0, (a, b) -> a + b);
+        int max = integerList.stream().reduce(Integer.MIN_VALUE, (a, b) -> a > b ? a : b);
+        int min = integerList.stream().reduce(Integer.MAX_VALUE, (a, b) -> a > b ? b : a);
+
+        System.out.println("count = " + count);
+        System.out.println("sum = " + sum);
+        System.out.println("max = " + max);
+        System.out.println("min = " + min);
+
+        List<String> stringList = new ArrayList<>(Arrays.asList("하나", "둘", "셋", "넷", "다섯"));
+
+        String 완성 = stringList.stream().reduce("시작", (a, b) -> a + " " + b);
+        System.out.println(완성); // 시작 하나 둘 셋 넷 다섯
     }
 
 }
